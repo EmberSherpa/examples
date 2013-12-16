@@ -137,13 +137,22 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build:dist', [
                      'createResultDirectory', // Create directoy beforehand, fixes race condition
-                     'concurrent:buildDist', // Executed in parallel, see config below
+                     'concurrent:buildDist'   // Executed in parallel, see config below
                      ]);
 
   grunt.registerTask('build:debug', [
                      'jshint:tooling',
                      'createResultDirectory', // Create directoy beforehand, fixes race condition
+                     'concurrent:buildDebug'  // Executed in parallel, see config below
+                     ]);
+
+  grunt.registerTask('build:examples', [
+                     'jshint:tooling',
+                     'createResultDirectory', // Create directoy beforehand, fixes race condition
+                     'copy:publicFiles',
+                     'copy:vendorFiles',
                      'concurrent:buildDebug', // Executed in parallel, see config below
+                     'gh-pages:debug'
                      ]);
 
   grunt.registerTask('createDistVersion', filterAvailable([

@@ -24,6 +24,22 @@ module.exports = {
     dest: 'tmp/result/assets'
   },
 
+  publicFiles: {
+    files: [{
+      expand: true,
+      cwd: 'public',
+      src: ['**'],
+      dest: 'tmp/result/'
+    }]
+  },
+
+  vendorFiles: {
+    files: [{
+      src: ['vendor/**/*.js', 'vendor/**/*.css'],
+      dest: 'tmp/result/'
+    }]
+  },
+
   // Assembles everything in `tmp/result`.
   // The sole purpose of this task is to keep things neat. Gathering everything in one
   // place (tmp/dist) enables the subtasks of dist to only look there. Note: However,
