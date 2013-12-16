@@ -1,0 +1,34 @@
+{
+  "version": 3,
+  "file": "app.js",
+  "sources": [
+    "tmp/transpiled/app/adapters/application.js",
+    "tmp/transpiled/app/app.js",
+    "tmp/transpiled/app/components/pretty-color.js",
+    "tmp/transpiled/app/controllers/group-by.js",
+    "tmp/transpiled/app/helpers/reverse-word.js",
+    "tmp/transpiled/app/router.js",
+    "tmp/transpiled/app/routes/component_test.js",
+    "tmp/transpiled/app/routes/group-by.js",
+    "tmp/transpiled/app/routes/helper_test.js",
+    "tmp/transpiled/app/routes/index.js",
+    "tmp/transpiled/app/utils/ajax.js",
+    "tmp/transpiled/app/utils/group-by.js"
+  ],
+  "names": [],
+  "mappings": "AAAA;AACA;AACA;AACA;AACA;AACA,K;ACLA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;AC1BA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACXA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACTA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACXA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACbA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACTA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACfA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACXA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACTA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K;ACRA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA,K",
+  "sourcesContent": [
+    "define(\"appkit/adapters/application\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    __exports__[\"default\"] = DS.FixtureAdapter.extend();\n  });",
+    "define(\"appkit/app\", \n  [\"resolver\",\"exports\"],\n  function(__dependency1__, __exports__) {\n    \"use strict\";\n    var Resolver = __dependency1__[\"default\"];\n\n    var App = Ember.Application.extend({\n      LOG_ACTIVE_GENERATION: true,\n      LOG_MODULE_RESOLVER: true,\n      LOG_TRANSITIONS: true,\n      LOG_TRANSITIONS_INTERNAL: true,\n      LOG_VIEW_LOOKUPS: true,\n      modulePrefix: 'appkit', // TODO: loaded via config\n      Resolver: Resolver['default']\n    });\n\n    Ember.RSVP.configure('onerror', function(error) {\n      // ensure unhandled promises raise awareness.\n      // may result in false negatives, but visibility is more important\n      if (error instanceof Error) {\n        Ember.Logger.assert(false, error);\n        Ember.Logger.error(error.stack);\n      }\n    });\n\n    __exports__[\"default\"] = App;\n  });",
+    "define(\"appkit/components/pretty-color\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    __exports__[\"default\"] = Ember.Component.extend({\n      classNames: ['pretty-color'],\n      attributeBindings: ['style'],\n      style: function(){\n        return 'color: ' + this.get('name') + ';';\n      }.property('name')\n    });\n  });",
+    "define(\"appkit/controllers/group-by\", \n  [\"appkit/utils/group-by\",\"exports\"],\n  function(__dependency1__, __exports__) {\n    \"use strict\";\n    var groupBy = __dependency1__[\"default\"];\n\n    __exports__[\"default\"] = Ember.ArrayController.extend({\n      grouped: groupBy('type')\n    });\n  });",
+    "define(\"appkit/helpers/reverse-word\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    // Please note that Handlebars helpers will only be found automatically by the\n    // resolver if their name contains a dash (reverse-word, translate-text, etc.)\n    // For more details: http://stefanpenner.github.io/ember-app-kit/guides/using-modules.html\n\n    __exports__[\"default\"] = Ember.Handlebars.makeBoundHelper(function(word) {\n      return word.split('').reverse().join('');\n    });\n  });",
+    "define(\"appkit/router\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    var Router = Ember.Router.extend(); // ensure we don't share routes between all Router instances\n\n    Router.map(function() {\n      this.route('component-test');\n      this.route('helper-test');\n      this.route('group-by');\n    });\n\n    __exports__[\"default\"] = Router;\n  });",
+    "define(\"appkit/routes/component_test\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    __exports__[\"default\"] = Ember.Route.extend({\n      model: function() {\n        return ['purple', 'green', 'orange'];\n      }\n    });\n  });",
+    "define(\"appkit/routes/group-by\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    __exports__[\"default\"] = Ember.Route.extend({\n      model: function() {\n        return [\n          {name: 'Tom',           type: 'cat'},\n          {name: 'Jerry',         type: 'mouse'},\n          {name: 'Puss in Boots', type: 'cat'},\n          {name: 'Bulldog',       type: 'dog'},\n          {name: 'Penut',         type: 'dog'}\n        ];\n      }\n    });\n  });",
+    "define(\"appkit/routes/helper_test\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    __exports__[\"default\"] = Ember.Route.extend({\n      model: function() {\n        return {\n          name: \"rebmE\"\n        };\n      }\n    });\n  });",
+    "define(\"appkit/routes/index\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    __exports__[\"default\"] = Ember.Route.extend({\n      model: function() {\n        return ['red', 'yellow', 'blue'];\n      }\n    });\n  });",
+    "define(\"appkit/utils/ajax\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    /* global ic */\n    __exports__[\"default\"] = function ajax(){\n      return ic.ajax.apply(null, arguments);\n    }\n  });",
+    "define(\"appkit/utils/group-by\", \n  [\"exports\"],\n  function(__exports__) {\n    \"use strict\";\n    var get = Ember.get;\n\n    __exports__[\"default\"] = function(groupBy) {\n      var dependentKey = 'content.@each.' + groupBy;\n\n      return Ember.computed(dependentKey, function(){\n        var result = [];\n\n        this.get('content').forEach(function(item){\n          var hasGroup = !!result.findBy('group', get(item, groupBy));\n\n          if (!hasGroup) {\n            result.pushObject(Ember.Object.create({\n              group: get(item, groupBy),\n              content: []\n            }));\n          }\n\n          result.findBy('group', get(item, groupBy)).get('content').pushObject(item);\n        });\n\n        return result;\n      });\n    }\n  });"
+  ]
+}
