@@ -1,0 +1,23 @@
+<h2>groupBy Computed Property Example</h2>
+
+<h3>Original content</h3>
+
+<ul>
+  {{#each}}
+      <li>{{name}} ({{type}})</li>
+  {{/each}}
+</ul>
+
+<h3>groupBy('type')</h3>
+<ul>
+    {{#each grouped}}
+        <li>
+          <h4>{{group}}</h4>
+            <ul>
+            {{#each content}}
+                <li>{{name}}</li>
+            {{/each}}
+            </ul>
+        </li>
+    {{/each}}
+</ul>
