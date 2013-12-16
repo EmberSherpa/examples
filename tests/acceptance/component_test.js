@@ -16,7 +16,7 @@ test('component output is rendered', function(){
     var title = find('h2#title');
     var list = find('.pretty-color');
 
-    equal(title.text(), 'Welcome to Ember.js');
+    equal(title.text(), 'Ember Sherpa Examples');
 
     equal(list.length, 3);
     equal(list.first().text(), 'Pretty Color: purple\n');

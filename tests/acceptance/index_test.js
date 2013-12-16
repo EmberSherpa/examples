@@ -16,7 +16,7 @@ test('index renders', function(){
     var title = find('h2#title');
     var list = find('ul li');
 
-    equal(title.text(), 'Welcome to Ember.js');
+    equal(title.text(), 'Ember Sherpa Examples');
 
     equal(list.length, 3);
     equal(list.text(), 'redyellowblue');
