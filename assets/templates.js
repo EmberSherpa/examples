@@ -1,4 +1,4 @@
-define('appkit/templates/application', ['exports'], function(__exports__){ __exports__['default'] = Ember.Handlebars.compile("<h2 id='title'>Welcome to Ember.js</h2>\n\n{{outlet}}\n"); });
+define('appkit/templates/application', ['exports'], function(__exports__){ __exports__['default'] = Ember.Handlebars.compile("<h2 id='title'>Ember Sherpa Examples</h2>\n\n{{outlet}}\n"); });
 
 define('appkit/templates/component-test', ['exports'], function(__exports__){ __exports__['default'] = Ember.Handlebars.compile("{{#each}}\n  {{pretty-color name=this}}\n{{/each}}\n"); });
 
