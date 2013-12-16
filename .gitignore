@@ -3,6 +3,7 @@
 # compiled output
 /dist
 /tmp
+.grunt
 
 # dependencies
 /node_modules
