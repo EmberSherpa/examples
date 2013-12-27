@@ -1,0 +1,32 @@
+<h3>Slide Deck</h3>
+<p>
+    The goal of this demo is to show how to add custom views to a CollectionView.
+    This is possible because CollectionView class extends ContainerView which allows an array of child views to be
+    rendered.
+</p>
+
+<h4>Instructions</h4>
+<ol>
+    <li>click Add Slide</li>
+    <li>enter text in newly created input field</li>
+    <li>click save</li>
+</ol>
+
+<p>
+    Your input will be added to the content property after you click save.
+</p>
+
+<hr>
+<button {{action 'new'}}>Add Slide</button>
+
+{{view 'deck-collection' content=content}}
+<strong>content.length = {{content.length}}</strong>
+<hr>
+
+<h3>Code</h3>
+<ul>
+    <li>{{github-link 'templates/deck.hbs'}} - this template</li>
+    <li>{{github-link 'routes/deck.hbs'}} - route provides initial content</li>
+    <li>{{github-link 'controllers/deck.js'}} - controller handles actions</li>
+    <li>{{github-link 'views/deck-collection.js'}} - collection view</li>
+</ul>
