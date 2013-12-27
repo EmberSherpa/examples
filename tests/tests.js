@@ -20,11 +20,50 @@ define("appkit/tests/acceptance/component_test",
         var title = find('h2#title');
         var list = find('.pretty-color');
 
-        equal(title.text(), 'Welcome to Ember.js');
+        equal(title.text(), 'Ember Sherpa Examples');
 
         equal(list.length, 3);
         equal(list.first().text(), 'Pretty Color: purple\n');
       });
+    });
+  });
+define("appkit/tests/acceptance/deck_test", 
+  [],
+  function() {
+    "use strict";
+    var App;
+
+    module('Acceptances - Deck', {
+      setup: function(){
+        App = startApp();
+      },
+      teardown: function() {
+        Ember.run(App, 'destroy');
+      }
+    });
+
+    test('deck renders', function(){
+      expect(2);
+
+      visit('/deck').then(function(){
+        var list = find('ul li.ember-view');
+        equal(list.length, 3);
+        equal(list.text(), 'abc');
+      });
+    });
+
+    test('slide added', function(){
+      expect(2);
+
+      visit('/deck');
+      click('button:contains("Add Slide")');
+      fillIn('input', 'hello world!' );
+      click('button:contains("Save")')
+        .then(function(){
+          var list = find('ul li.ember-view');
+          equal(list.length, 4);
+          equal(list.text(), 'abchello world!');
+        });
     });
   });
 define("appkit/tests/acceptance/helper_test", 
@@ -72,7 +111,7 @@ define("appkit/tests/acceptance/index_test",
         var title = find('h2#title');
         var list = find('ul li');
 
-        equal(title.text(), 'Welcome to Ember.js');
+        equal(title.text(), 'Ember Sherpa Examples');
 
         equal(list.length, 3);
         equal(list.text(), 'redyellowblue');
