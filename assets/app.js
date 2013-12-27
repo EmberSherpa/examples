@@ -134,7 +134,7 @@ define("appkit/helpers/github-link",
   function(__exports__) {
     "use strict";
     __exports__["default"] = Ember.Handlebars.makeBoundHelper(function(path) {
-      var result = '<a target="_blank" href="https://github.com/embersherpa/examples/blob/master/app/%@">%@</a>'.fmt(path, path);
+      var result = '<a target="_blank" href="https://github.com/embersherpa/examples/blob/master/%@">%@</a>'.fmt(path, path);
       return new Ember.Handlebars.SafeString(result);
     });
   });
