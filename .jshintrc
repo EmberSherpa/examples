@@ -7,7 +7,8 @@
     "Ember",
     "Em",
     "DS",
-    "$"
+    "$",
+    "ic"
   ],
   "node" : false,
   "browser" : false,
