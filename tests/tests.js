@@ -53,16 +53,12 @@ define("appkit/tests/acceptance/index_test",
     });
 
     test('index renders', function(){
-      expect(3);
+      expect(1);
 
       visit('/').then(function(){
-        var title = find('h2#title');
-        var list = find('ul li');
+        var title = find('.navbar-brand');
 
         equal(title.text(), 'Ember Sherpa Examples');
-
-        equal(list.length, 3);
-        equal(list.text(), 'redyellowblue');
       });
     });
   });
