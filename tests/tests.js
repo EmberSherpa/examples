@@ -1,32 +1,3 @@
-define("appkit/tests/acceptance/component_test", 
-  [],
-  function() {
-    "use strict";
-    var App;
-
-    module('Acceptances - Component', {
-      setup: function(){
-        App = startApp();
-      },
-      teardown: function() {
-        Ember.run(App, 'destroy');
-      }
-    });
-
-    test('component output is rendered', function(){
-      expect(3);
-
-      visit('/component-test').then(function(){
-        var title = find('h2#title');
-        var list = find('.pretty-color');
-
-        equal(title.text(), 'Ember Sherpa Examples');
-
-        equal(list.length, 3);
-        equal(list.first().text(), 'Pretty Color: purple\n');
-      });
-    });
-  });
 define("appkit/tests/acceptance/deck_test", 
   [],
   function() {
@@ -64,29 +35,6 @@ define("appkit/tests/acceptance/deck_test",
           equal(list.length, 4);
           equal(list.text(), 'abchello world!');
         });
-    });
-  });
-define("appkit/tests/acceptance/helper_test", 
-  [],
-  function() {
-    "use strict";
-    var App;
-
-    module("Acceptances - Helper", {
-      setup: function(){
-        App = startApp();
-      },
-      teardown: function() {
-        Ember.run(App, 'destroy');
-      }
-    });
-
-    test("helper output is rendered", function(){
-      expect(1);
-
-      visit('/helper-test').then(function(){
-        ok(exists("h3:contains('My name is Ember.')"));
-      });
     });
   });
 define("appkit/tests/acceptance/index_test", 

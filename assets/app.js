@@ -61,10 +61,13 @@ define("appkit/adapters/user",
     });
   });
 define("appkit/app", 
-  ["resolver","exports"],
-  function(__dependency1__, __exports__) {
+  ["resolver","appkit/utils/hacks","exports"],
+  function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
     var Resolver = __dependency1__["default"];
+    var hacks = __dependency2__["default"];
+
+    hacks();
 
     var App = Ember.Application.extend({
       LOG_ACTIVE_GENERATION: true,
@@ -138,18 +141,6 @@ define("appkit/helpers/github-link",
       return new Ember.Handlebars.SafeString(result);
     });
   });
-define("appkit/helpers/reverse-word", 
-  ["exports"],
-  function(__exports__) {
-    "use strict";
-    // Please note that Handlebars helpers will only be found automatically by the
-    // resolver if their name contains a dash (reverse-word, translate-text, etc.)
-    // For more details: http://stefanpenner.github.io/ember-app-kit/guides/using-modules.html
-
-    __exports__["default"] = Ember.Handlebars.makeBoundHelper(function(word) {
-      return word.split('').reverse().join('');
-    });
-  });
 define("appkit/models/post", 
   ["exports"],
   function(__exports__) {
@@ -168,29 +159,12 @@ define("appkit/router",
     var Router = Ember.Router.extend(); // ensure we don't share routes between all Router instances
 
     Router.map(function() {
-
-      this.resource('post', {
-        path: '/posts/:post_id'
-      });
-
-      this.route('component-test');
-      this.route('helper-test');
       this.route('group-by');
-
+      this.route('templateless-components');
       this.route('deck');
     });
 
     __exports__["default"] = Router;
-  });
-define("appkit/routes/component_test", 
-  ["exports"],
-  function(__exports__) {
-    "use strict";
-    __exports__["default"] = Ember.Route.extend({
-      model: function() {
-        return ['purple', 'green', 'orange'];
-      }
-    });
   });
 define("appkit/routes/deck", 
   ["exports"],
@@ -218,18 +192,6 @@ define("appkit/routes/group-by",
       }
     });
   });
-define("appkit/routes/helper_test", 
-  ["exports"],
-  function(__exports__) {
-    "use strict";
-    __exports__["default"] = Ember.Route.extend({
-      model: function() {
-        return {
-          name: "rebmE"
-        };
-      }
-    });
-  });
 define("appkit/routes/index", 
   ["exports"],
   function(__exports__) {
@@ -237,6 +199,21 @@ define("appkit/routes/index",
     __exports__["default"] = Ember.Route.extend({
       model: function() {
         return ['red', 'yellow', 'blue'];
+      }
+    });
+  });
+define("appkit/routes/templateless-components", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    __exports__["default"] = Ember.Route.extend({
+      model: function() {
+        return [
+          { title: "Hello World!", content: "We come in peace!" },
+          { title: "Bring us to your leader", content: "We have business to discuss!"},
+          { title: "CATS", content:"All of your bases now belong to us!" },
+          { title: "Breaking News", content: "Well that escalated quickly" }
+        ]
       }
     });
   });
@@ -276,6 +253,24 @@ define("appkit/utils/group-by",
 
         return result;
       });
+    }
+  });
+define("appkit/utils/hacks", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    __exports__["default"] = function() {
+
+      Ember.View.reopen({
+        loadTweets: function() {
+          Ember.run.scheduleOnce('afterRender', function(){
+            if (typeof twttr !== 'undefined') {
+              twttr.widgets.load();
+            }
+          });
+        }.on('didInsertElement')
+      });
+
     }
   });
 define("appkit/views/deck-collection", 
