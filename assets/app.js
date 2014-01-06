@@ -61,13 +61,11 @@ define("appkit/adapters/user",
     });
   });
 define("appkit/app", 
-  ["resolver","appkit/utils/hacks","exports"],
+  ["resolver","appkit/utils/setup-twitter-widgets","exports"],
   function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
     var Resolver = __dependency1__["default"];
-    var hacks = __dependency2__["default"];
-
-    hacks();
+    var setupTwitterWidgets = __dependency2__["default"];
 
     var App = Ember.Application.extend({
       LOG_ACTIVE_GENERATION: true,
@@ -87,6 +85,8 @@ define("appkit/app",
         Ember.Logger.error(error.stack);
       }
     });
+
+    setupTwitterWidgets();
 
     __exports__["default"] = App;
   });
@@ -160,11 +160,26 @@ define("appkit/router",
 
     Router.map(function() {
       this.route('group-by');
-      this.route('templateless-components');
+      this.route('component-blocks');
       this.route('deck');
     });
 
     __exports__["default"] = Router;
+  });
+define("appkit/routes/component-blocks", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    __exports__["default"] = Ember.Route.extend({
+      model: function() {
+        return [
+          { title: "Hello World!", content: "We come in peace!" },
+          { title: "Bring us to your leader", content: "We have business to discuss!"},
+          { title: "CATS", content:"All of your bases now belong to us!" },
+          { title: "Breaking News", content: "Well that escalated quickly" }
+        ];
+      }
+    });
   });
 define("appkit/routes/deck", 
   ["exports"],
@@ -259,6 +274,27 @@ define("appkit/utils/hacks",
   ["exports"],
   function(__exports__) {
     "use strict";
+    __exports__["default"] = function() {
+
+      Ember.View.reopen({
+        loadTweets: function() {
+          Ember.run.scheduleOnce('afterRender', function(){
+            if (typeof twttr !== 'undefined') {
+              twttr.widgets.load();
+            }
+          });
+        }.on('didInsertElement')
+      });
+
+    }
+  });
+define("appkit/utils/setup-twitter-widgets", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    /**
+     * Load all twitter widgets after the views were rendered
+     */
     __exports__["default"] = function() {
 
       Ember.View.reopen({
