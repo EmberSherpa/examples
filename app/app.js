@@ -1,7 +1,5 @@
 import Resolver from 'resolver';
-import hacks from 'appkit/utils/hacks';
-
-hacks();
+import setupTwitterWidgets from 'appkit/utils/setup-twitter-widgets';
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,
@@ -21,5 +19,7 @@ Ember.RSVP.configure('onerror', function(error) {
     Ember.Logger.error(error.stack);
   }
 });
+
+setupTwitterWidgets();
 
 export default App;

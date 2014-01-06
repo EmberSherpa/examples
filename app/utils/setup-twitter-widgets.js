@@ -1,3 +1,6 @@
+/**
+ * Load all twitter widgets after the views were rendered
+ */
 export default function() {
 
   Ember.View.reopen({
