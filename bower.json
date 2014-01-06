@@ -7,6 +7,9 @@
     "ember": "~1.2.0",
     "ember-data": "~1.0.0-beta.3",
     "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
-    "ic-ajax": "~0.2"
+    "ic-ajax": "~0.2",
+    "flat-ui": "git+https://github.com/designmodo/Flat-UI.git",
+    "bootstrap": "~3.0.3",
+    "highlight.js": "~7.3.0"
   }
 }

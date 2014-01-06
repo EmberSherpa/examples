@@ -1,4 +1,7 @@
 import Resolver from 'resolver';
+import hacks from 'appkit/utils/hacks';
+
+hacks();
 
 var App = Ember.Application.extend({
   LOG_ACTIVE_GENERATION: true,

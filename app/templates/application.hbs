@@ -1,3 +1,10 @@
-<h2 id="title">Ember Sherpa Examples</h2>
-<hr>
-{{outlet}}
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    {{#link-to 'index' classNames="navbar-brand"}}Ember Sherpa Examples{{/link-to}}
+  </div>
+</nav>
+<div class="container">
+    {{outlet}}
+</div>
+

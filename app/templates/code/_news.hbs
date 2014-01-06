@@ -1,0 +1,8 @@
+{{#each}}
+{{! the template for news-post component acts as layout to the component's block}}
+    {{#news-post}}
+    {{! component block is a template for this component}}
+      <h5>{{title}}</h5>
+      <p>{{content}}</p>
+    {{/news-post}}
+{{/each}}

@@ -1,3 +1,20 @@
-<h2>Templateless Components</h2>
+<h3>Template-less Components</h3>
 
-<blockquote class="twitter-tweet" lang="en"><p>In ember, you can do {{x-foo}} without a template or Ember.Component behind it, use it liberally when building out your app.</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/statuses/418828288069361664">January 2, 2014</a></blockquote>
+<div class="row">
+  <div class="col-lg-6">
+    <blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p>In ember, you can do \{{x-foo}} without a template or Ember.Component behind it, use it liberally when building out your app.</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/statuses/418828288069361664">January 2, 2014</a></blockquote>
+    <blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p><a href="https://twitter.com/EmberSherpa">@EmberSherpa</a> So what <a href="https://twitter.com/ryanflorence">@ryanflorence</a> is saying is that a “template-less” component just has a default \{{yield}}. See: <a href="https://t.co/RFkhC0do6D">https://t.co/RFkhC0do6D</a></p>&mdash; Robert Jackson (@rwjblue) <a href="https://twitter.com/rwjblue/statuses/418962456942501889">January 3, 2014</a></blockquote>
+    <blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p><a href="https://twitter.com/EmberSherpa">@EmberSherpa</a> Take a look at the buttonset component in <a href="https://t.co/I13dhJPXyd">https://t.co/I13dhJPXyd</a>. It’s template is simply \{{yield}}.&#10;&#10;/cc <a href="https://twitter.com/ryanflorence">@ryanflorence</a></p>&mdash; Robert Jackson (@rwjblue) <a href="https://twitter.com/rwjblue/statuses/418965493182377984">January 3, 2014</a></blockquote>
+  </div>
+  <div class="col-lg-6">
+    <h4>Demo</h4>
+      <ul>
+        <li>Demo template: {{github-link 'templates/code/_news.hbs'}}</li>
+        <li>Component template: {{github-link 'templates/components/news-post.hbs'}}</li>
+      </ul>
+    <h4>Demo Output</h4>
+    <ol>
+        {{partial 'code/news'}}
+    </ol>
+  </div>
+</div>
