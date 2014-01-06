@@ -217,21 +217,6 @@ define("appkit/routes/index",
       }
     });
   });
-define("appkit/routes/templateless-components", 
-  ["exports"],
-  function(__exports__) {
-    "use strict";
-    __exports__["default"] = Ember.Route.extend({
-      model: function() {
-        return [
-          { title: "Hello World!", content: "We come in peace!" },
-          { title: "Bring us to your leader", content: "We have business to discuss!"},
-          { title: "CATS", content:"All of your bases now belong to us!" },
-          { title: "Breaking News", content: "Well that escalated quickly" }
-        ];
-      }
-    });
-  });
 define("appkit/utils/ajax", 
   ["exports"],
   function(__exports__) {
@@ -268,24 +253,6 @@ define("appkit/utils/group-by",
 
         return result;
       });
-    }
-  });
-define("appkit/utils/hacks", 
-  ["exports"],
-  function(__exports__) {
-    "use strict";
-    __exports__["default"] = function() {
-
-      Ember.View.reopen({
-        loadTweets: function() {
-          Ember.run.scheduleOnce('afterRender', function(){
-            if (typeof twttr !== 'undefined') {
-              twttr.widgets.load();
-            }
-          });
-        }.on('didInsertElement')
-      });
-
     }
   });
 define("appkit/utils/setup-twitter-widgets", 
