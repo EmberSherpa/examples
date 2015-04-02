@@ -12,11 +12,11 @@ export default function(groupBy) {
       if (!existentGroup) {
         result.pushObject(Ember.Object.create({
           group: get(item, groupBy),
-          content: []
+          content: [ item ]
         }));
+      } else {
+        existentGroup.get('content').pushObject(item);
       }
-
-      existentGroup.get('content').pushObject(item);
     });
 
     return result;
