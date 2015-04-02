@@ -7,16 +7,16 @@ export default function(groupBy) {
     var result = [];
 
     this.get('content').forEach(function(item){
-      var hasGroup = !!result.findBy('group', get(item, groupBy));
+      var existentGroup = result.findBy('group', get(item, groupBy));
 
-      if (!hasGroup) {
+      if (!existentGroup) {
         result.pushObject(Ember.Object.create({
           group: get(item, groupBy),
           content: []
         }));
       }
 
-      result.findBy('group', get(item, groupBy)).get('content').pushObject(item);
+      existentGroup.get('content').pushObject(item);
     });
 
     return result;
